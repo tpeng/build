@@ -3,22 +3,22 @@
 # Copyright (c) 2007 Henri Sivonen
 # Copyright (c) 2008-2014 Mozilla Foundation
 #
-# Permission is hereby granted, free of charge, to any person obtaining a 
-# copy of this software and associated documentation files (the "Software"), 
-# to deal in the Software without restriction, including without limitation 
-# the rights to use, copy, modify, merge, publish, distribute, sublicense, 
-# and/or sell copies of the Software, and to permit persons to whom the 
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
 #
-# The above copyright notice and this permission notice shall be included in 
+# The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
 import os
@@ -91,7 +91,7 @@ dependencyPackages = [
   ("http://archive.apache.org/dist/commons/logging/binaries/commons-logging-1.1.1-bin.zip", "f88520ed791673aed6cc4591bc058b55"),
   ("http://download.icu-project.org/files/icu4j/4.4.2/icu4j-4_4_2.jar", "04b27abd15a6357bdfb64ff830752b0b"),
   ("http://download.icu-project.org/files/icu4j/4.4.2/icu4j-charsets-4_4_2.jar", "2359d6a97730d0ed23f3e17cd2a2f6d6"),
-  ("http://switch.dl.sourceforge.net/sourceforge/jena/iri-0.5.zip", "87b0069e689c22ba2a2b50f4d200caca"),
+  ("http://download.sourceforge.net/sourceforge/jena/iri-0.5.zip", "87b0069e689c22ba2a2b50f4d200caca"),
   ("http://dist.codehaus.org/jetty/jetty-6.1.26/jetty-6.1.26.zip", "0d9b2ae3feb2b207057358142658a11f"),
   ("http://archive.apache.org/dist/logging/log4j/1.2.15/apache-log4j-1.2.15.zip", "5b0d27be24d6ac384215b6e269d3e352"),
   ("http://archive.apache.org/dist/xerces/j/Xerces-J-bin.2.9.1.zip", "a0e07ede1c3bd5231fe15eae24032b2e"),
@@ -102,14 +102,14 @@ dependencyPackages = [
   ("http://www.slf4j.org/dist/slf4j-1.5.2.zip", "00ff08232a9959af3c7101b88ec456a7"),
   ("http://archive.apache.org/dist/commons/fileupload/binaries/commons-fileupload-1.2.1-bin.zip", "975100c3f74604c0c22f68629874f868"),
   ("http://archive.apache.org/dist/ant/binaries/apache-ant-1.7.0-bin.zip" , "ac30ce5b07b0018d65203fbc680968f5"),
-  ("http://switch.dl.sourceforge.net/sourceforge/iso-relax/isorelax.20041111.zip" , "10381903828d30e36252910679fcbab6"),
-  ("http://switch.dl.sourceforge.net/sourceforge/junit/junit-4.4.jar", "f852bbb2bbe0471cef8e5b833cb36078"),
-  ("http://switch.dl.sourceforge.net/sourceforge/jchardet/chardet.zip", "4091d24451ee9a840933bce34b9e3a55"),
-  ("http://switch.dl.sourceforge.net/sourceforge/saxon/saxonb9-1-0-2j.zip", "9e649eec59103593fb75befaa28e1f3d"),
+  ("http://download.sourceforge.net/sourceforge/iso-relax/isorelax.20041111.zip" , "10381903828d30e36252910679fcbab6"),
+  ("http://download.sourceforge.net/sourceforge/junit/junit-4.4.jar", "f852bbb2bbe0471cef8e5b833cb36078"),
+  ("http://download.sourceforge.net/sourceforge/jchardet/chardet.zip", "4091d24451ee9a840933bce34b9e3a55"),
+  ("http://download.sourceforge.net/sourceforge/saxon/saxonb9-1-0-2j.zip", "9e649eec59103593fb75befaa28e1f3d"),
   ("http://central.maven.org/maven2/io/mola/galimatias/galimatias/0.0.3/galimatias-0.0.3.jar", "e47c0557d7f72f16ebdc5e5093ae5ea9"),
 ]
 
-# Unfortunately, the packages contain old versions of certain libs, so 
+# Unfortunately, the packages contain old versions of certain libs, so
 # can't just autodiscover all jars. Hence, an explicit list.
 
 runDependencyJars = [
@@ -169,15 +169,15 @@ class UrlExtractor(SGMLParser):
     self.baseUrl = baseUrl
     self.leaves = []
     self.directories = []
-    
+
   def start_a(self, attrs):
     for name, value in attrs:
       if name == "href":
         if directoryPat.match(value):
           self.directories.append(self.baseUrl + value)
         if leafPat.match(value):
-          self.leaves.append(self.baseUrl + value)    
-    
+          self.leaves.append(self.baseUrl + value)
+
 def runCmd(cmd):
   print cmd
   if os.name == 'nt' and cmd[:1] == '"':
@@ -210,7 +210,7 @@ def ensureDirExists(dirPath):
 
 def findFilesWithExtension(directory, extension):
   rv = []
-  ext = '.' + extension 
+  ext = '.' + extension
   for root, dirs, files in os.walk(directory):
     for file in files:
       if file.endswith(ext):
@@ -256,8 +256,8 @@ def copyFiles(sourceDir, classDir):
 
 def runJar(classDir, jarFile, sourceDir):
   classFiles = findFiles(classDir)
-  classList = map(lambda x: 
-                    "-C " + classDir + " " + x[len(classDir)+1:] + "", 
+  classList = map(lambda x:
+                    "-C " + classDir + " " + x[len(classDir)+1:] + "",
                   classFiles)
   f = open("temp-jar-list", "w")
   if os.name == 'nt':
@@ -265,7 +265,7 @@ def runJar(classDir, jarFile, sourceDir):
   else:
     f.write("\n".join(classList))
   f.close()
-  runCmd('"%s" cf "%s" %s' 
+  runCmd('"%s" cf "%s" %s'
     % (jarCmd, jarFile, "@temp-jar-list"))
   removeIfExists("temp-jar-list")
 
@@ -298,25 +298,25 @@ def buildUtil():
                               + jarNamesToPaths(["html5-datatypes", "htmlparser"])
                               + jingJarPath())
   buildModule(
-    os.path.join(buildRoot, "util"), 
-    "io-xml-util", 
+    os.path.join(buildRoot, "util"),
+    "io-xml-util",
     classPath)
 
 def buildDatatypeLibrary():
-  classPath = os.pathsep.join(dependencyJarPaths() 
+  classPath = os.pathsep.join(dependencyJarPaths()
                               + jingJarPath())
   buildModule(
-    os.path.join(buildRoot, "syntax", "relaxng", "datatype", "java"), 
-    "html5-datatypes", 
+    os.path.join(buildRoot, "syntax", "relaxng", "datatype", "java"),
+    "html5-datatypes",
     classPath)
 
 def buildNonSchema():
-  classPath = os.pathsep.join(dependencyJarPaths() 
+  classPath = os.pathsep.join(dependencyJarPaths()
                               + jarNamesToPaths(["html5-datatypes",])
                               + jingJarPath())
   buildModule(
-    os.path.join(buildRoot, "syntax", "non-schema", "java"), 
-    "non-schema", 
+    os.path.join(buildRoot, "syntax", "non-schema", "java"),
+    "non-schema",
     classPath)
 
 def buildSchemaDrivers():
@@ -558,18 +558,18 @@ def buildSchemaDriverXhtml5htmlRDFaLite(schemaDir):
 #################################################################
 
 def buildXmlParser():
-  classPath = os.pathsep.join(dependencyJarPaths() 
+  classPath = os.pathsep.join(dependencyJarPaths()
                               + jarNamesToPaths(["htmlparser", "io-xml-util"]))
   buildModule(
-    os.path.join(buildRoot, "xmlparser"), 
-    "hs-aelfred2", 
+    os.path.join(buildRoot, "xmlparser"),
+    "hs-aelfred2",
     classPath)
 
 def buildHtmlParser():
   classPath = os.pathsep.join(dependencyJarPaths())
   buildModule(
-    os.path.join(buildRoot, "htmlparser"), 
-    "htmlparser", 
+    os.path.join(buildRoot, "htmlparser"),
+    "htmlparser",
     classPath)
 
 def buildJing():
@@ -583,20 +583,20 @@ def buildValidator():
   formEmitter = os.path.join("validator", "src", "nu", "validator", "servlet", "FormEmitter.java")
   runCmd('"%s" -classpath %s nu.validator.tools.SaxCompiler %s %s' % (javaCmd, ioJar, pageTemplateFile, pageEmitter))
   runCmd('"%s" -classpath %s nu.validator.tools.SaxCompiler %s %s' % (javaCmd, ioJar, formTemplateFile, formEmitter))
-  classPath = os.pathsep.join(dependencyJarPaths() 
-                              + jarNamesToPaths(["non-schema", 
+  classPath = os.pathsep.join(dependencyJarPaths()
+                              + jarNamesToPaths(["non-schema",
                                                 "io-xml-util",
                                                 "htmlparser",
                                                 "hs-aelfred2",
                                                 "html5-datatypes"])
                               + jingJarPath())
   buildModule(
-    os.path.join(buildRoot, "validator"), 
-    "validator", 
+    os.path.join(buildRoot, "validator"),
+    "validator",
     classPath)
 
 def ownJarList():
-  return jarNamesToPaths(["non-schema", 
+  return jarNamesToPaths(["non-schema",
                           "io-xml-util",
                           "htmlparser",
                           "hs-aelfred2",
@@ -644,17 +644,17 @@ def getRunArgs(heap="$((HEAP))"):
   ]
 
   if usePromiscuousSsl:
-    args.append('-Dnu.validator.xml.promiscuous-ssl=true')  
+    args.append('-Dnu.validator.xml.promiscuous-ssl=true')
 
   args.append('nu.validator.servlet.Main')
-  
+
   if useAjp:
     args.append('ajp')
   args.append(portNumber)
   if controlPort:
     args.append(controlPort)
   return args
-  
+
 def generateRunScript():
   args = getRunArgs()
   f = open(os.path.join(buildRoot, "run-validator.sh"), 'wb')
@@ -668,7 +668,7 @@ def generateRunScript():
   if controlPort:
     f.write(" <&- 1>/dev/null 2>&1 &")
   f.write("\n")
-  f.close()  
+  f.close()
 
 def runValidator():
   ensureDirExists(os.path.join(buildRoot, "logs"))
@@ -735,12 +735,12 @@ def deployOverScp():
   if not deploymentTarget:
     print "No target"
     return
-  runCmd('"%s" "%s" %s/deps.tar.gz' % (scpCmd, os.path.join(buildRoot, "deps.tar.gz"), deploymentTarget))  
+  runCmd('"%s" "%s" %s/deps.tar.gz' % (scpCmd, os.path.join(buildRoot, "deps.tar.gz"), deploymentTarget))
   runCmd('"%s" "%s" %s/jars.tar.gz' % (scpCmd, os.path.join(buildRoot, "jars.tar.gz"), deploymentTarget))
   emptyPath = os.path.join(buildRoot, "EMPTY")
   f = open(emptyPath, 'wb')
   f.close()
-  runCmd('"%s" "%s" %s/DEPLOY' % (scpCmd, emptyPath, deploymentTarget))  
+  runCmd('"%s" "%s" %s/DEPLOY' % (scpCmd, emptyPath, deploymentTarget))
   os.remove(emptyPath)
 
 def fetchUrlTo(url, path, md5sum=None):
@@ -939,13 +939,13 @@ def selfUpdate():
   if os.name == 'nt':
     sys.exit(subprocess.call(newArgv))
   else:
-    os.execv(sys.executable, newArgv)  
+    os.execv(sys.executable, newArgv)
 
 def runTests():
   args = "tests/messages.json"
   className = "nu.validator.client.TestRunner"
-  classPath = os.pathsep.join(dependencyJarPaths() 
-                              + jarNamesToPaths(["non-schema", 
+  classPath = os.pathsep.join(dependencyJarPaths()
+                              + jarNamesToPaths(["non-schema",
                                                 "io-xml-util",
                                                 "htmlparser",
                                                 "hs-aelfred2",
